@@ -6,7 +6,7 @@
         if (re.test(userAgent)) {
             return false;
         }
-        let selector = document.querySelectorAll(prod.selector);
+        let selector = document.querySelectorAll(prod.linkSelector);
         
         selector.forEach(function(e){
             e.setAttribute("data-href",e.getAttribute('href'));
@@ -14,11 +14,29 @@
 
             e.addEventListener("click",function(a){
                 const state = { }
-                const title = e.getAttribute('title')
-                const url = '/'+e.getAttribute('data-href');
+                const url = e.getAttribute('data-href');
 
-                history.pushState(state, title, url)
-                document.title = title;
+                fetch(url)
+                .then(function(response) {
+                    return response.text()
+                })
+                .then(function(html) {
+                    var parser = new DOMParser();
+                    var doc = parser.parseFromString(html, "text/html");
+
+                    //Get Title
+                    title = doc.head.querySelector("title").textContent;
+                    document.title = title;
+
+                    //Get Content
+                    body = doc.body.querySelector(prod.targetSelector).textContent;
+                    document.querySelector(prod.targetSelector).innerHTML = body;
+
+                    history.pushState({}, title, url)
+                })
+                .catch(function(err) {  
+                    console.log('Failed to fetch page: ', err);  
+                });
 
                 if(prod.analytics){
                     ga('send', 'pageview', url);
@@ -27,23 +45,3 @@
         });    
     }
 }());
-
-
-/*
-  , b = function(t) {
-    var n = t.attr("data-title")
-      , i = t.attr("data-url")
-      , r = t.attr("data-description")
-      , o = (t.attr("data-image"),
-    t.attr("data-amp"));
-    e("title").text() !== n && (changeContentBottom(t),
-    y(n, i),
-    x(a),
-    ga("send", "event", "Infinate Content", "View", i),
-    ga("send", "pageview"),
-    e("title").html(n),
-    e("meta[name=description]").attr("content", r),
-    e("meta[name=description]").attr("content", r),
-    e("link[rel=amphtml]").length > 0 && o && e("link[rel=amphtml]").attr("href", o))
-}
-*/

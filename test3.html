@@ -3,19 +3,22 @@
         <title>FAST</title>
         <link rel="stylesheet" href="assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="assets/css/style.css">
+        <meta charset="utf-8"/>
     </head>
     <body>
-        <h1>TEST</h1>
-        <a href="test/tost" class="redirectLink" title="Test1">Content1</a>
-        <a href="test/tost" class="redirectLink" title="Test2">Content2</a>
-        <a href="test/tost" class="redirectLink" title="Test3">Content3</a>
-        <a href="test/tost" class="redirectLink" title="Test4">Content4</a>
-        <a href="test/tost" class="redirectLink" title="Test5">Content5</a>
+        <div id="pageContent">
+            test3 page
+        </div>
+        <a href="test1.html" class="redirectLink" title="Test1">Content1</a>
+        <a href="test2.html" class="redirectLink" title="Test2">Content2</a>
+        <a href="test1.html" class="redirectLink" title="Test3">Content3</a>
+        <a href="test2.html" class="redirectLink" title="Test4">Content4</a>
+        <a href="test1.html" class="redirectLink" title="Test5">Content5</a>
 
         <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="assets/js/fast.js"></script>
         <script type="text/javascript">
-            new Fast({selector:".redirectLink",serviceUrl:"https://tozlu.com",analytics:true});
+            new Fast({targetSelector:"#pageContent",linkSelector:".redirectLink",analytics:false});
         </script>
     </body>
 </html>
