@@ -18,7 +18,18 @@
         <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="assets/js/fast.js"></script>
         <script type="text/javascript">
-            new Fast({targetSelector:"#pageContent",linkSelector:".redirectLink",analytics:false});
+            new Fast({
+                localSelector:"div.catalog-page",
+                targetSelector:"form#product-details-form",
+                linkSelector:".product div.image > a",
+                analytics:false,
+                onOpened:function(e){
+                    var productName = e.title;
+                    var productImage = "";
+                    console.log(productName);
+                },
+                //onError:function(e){alert("Error!");},
+            });
         </script>
     </body>
 </html>
