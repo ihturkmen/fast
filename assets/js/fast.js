@@ -9,12 +9,9 @@
         var selector = document.querySelectorAll(prod.linkSelector);
         
         selector.forEach(function(e){
-            e.setAttribute("data-href",e.getAttribute('href'));
-            e.setAttribute("href","javascript:;");
-
             e.addEventListener("click",function(a){
                 const state = { }
-                const url = e.getAttribute('data-href');
+                const url = e.getAttribute('href');
 
                 fetch(url)
                 .then(function(response) {
@@ -34,7 +31,6 @@
 
                     //Change URL
                     history.pushState({}, title, url)
-                    history.replaceState({}, title, url);
 
                     if (prod.onOpened !== undefined) {
                         prod.onOpened(e);
@@ -50,7 +46,29 @@
                 if(prod.analytics){
                     ga('send', 'pageview', url);
                 }
+
+                a.preventDefault(); //prevent default  behaviour
+                return false; //also return false
             });
         });    
     }
+
+
 }());
+window.onpopstate = function(event) {
+    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+};
+
+new Fast({
+    localSelector:"#pageContent",
+    targetSelector:"#pageContent",
+    linkSelector:"a.redirectLink",
+    analytics:false,
+    onBefore:function(e){
+        console.log(e);
+    },
+    onFinished:function(e){
+        console.log(e);
+    },
+    //onError:function(e){alert("Error!");},
+});
