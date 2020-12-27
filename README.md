@@ -5,6 +5,7 @@ Instead of calling the same resources over and over on each page while browsing 
 
 # Example
 
+For example, I measured the effort she spent while opening the product detail page on amazon.com
 ![Optional Text](../master/ss.png)
 
 # Usage
