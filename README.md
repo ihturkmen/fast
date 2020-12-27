@@ -3,6 +3,9 @@
 Your project mimics the single page application working logic.
 Instead of calling the same resources over and over on each page while browsing through the site, you can save both time and traffic by calling only once when the project is opened.
 
+# Example
+
+![Optional Text](../master/ss.png)
 
 # Usage
 
@@ -25,7 +28,7 @@ Just let me know the changed part of the page and for which links it will be act
         },
         onError: function(e) {
             console.log(e);
-        },
+        }
     });
 </script>
 ```

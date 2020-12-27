@@ -57,7 +57,7 @@
                     var doc = parser.parseFromString(html, "text/html");
 
                     //Get Content
-                    body = doc.body.querySelector(prod.fromSelector).innerHTML;
+                    body = doc.body.querySelector(prod.toSelector).innerHTML;
                     document.querySelector(prod.fromSelector).innerHTML = body;
 
                     //Change URL
