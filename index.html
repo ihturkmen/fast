@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-    <head>
-        <title>FAST</title>
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="assets/css/style.css">
-        <meta charset="utf-8"/>
-    </head>
-    <body>
-        <div id="pageContent">
-            index page
-        </div>
-        <a href="test1.html" class="redirectLink" title="Test1">Content1</a>
-        <a href="test2.html" class="redirectLink" title="Test2">Content2</a>
-        <a href="test1.html" class="redirectLink" title="Test3">Content3</a>
-        <a href="test2.html" class="redirectLink" title="Test4">Content4</a>
-        <a href="test1.html" class="redirectLink" title="Test5">Content5</a>
 
-        <script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="assets/js/fast.js"></script>
-    </body>
+<head>
+    <title>FAST - CONTENT 1</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <div id="pageContent">PAGE 1</div>
+    <a href="index.html" class="redirectLink" title="Test1">Content1</a>
+    <a href="test1.html" class="redirectLink" title="Test2">Content2</a>
+    <a href="test2.html" class="redirectLink" title="Test3">Content3</a>
+    <a href="test3.html" class="redirectLink" title="Test4">Content4</a>
+
+    <script type="text/javascript" src="assets/js/fast.js"></script>
+    <script type="text/javascript">
+        new Fast({
+            fromSelector: "#pageContent",
+            toSelector: "#pageContent",
+            linkSelector: "a.redirectLink",
+            analytics: false,
+            changeUrl: true,
+            changeTitle: true,
+            onBefore: function(e) {
+                console.log(e);
+            },
+            onFinished: function(e) {
+                console.log(e);
+            },
+            onError: function(e) {
+                console.log(e);
+            },
+        });
+    </script>
+</body>
+
 </html>
